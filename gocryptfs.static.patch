@@ -1,0 +1,25 @@
+--- ./build.bash
++++ ../build.bash.old
+@@ -12,6 +12,9 @@
+ 
+ cd "$(dirname "$0")"
+ 
++# Set GOAMD64 version to v3
++export GOAMD64=v3
++
+ # $0 does not work because we may have been sourced
+ MYNAME=build.bash
+ 
+@@ -86,10 +89,10 @@
+ fi
+ 
+ # Actual "go build" call for gocryptfs
+-go build "-ldflags=$GO_LDFLAGS" "$@"
++go build -a -tags netgo -ldflags "-w $GO_LDFLAGS -extldflags "-static"" "$@"
+ # Additional binaries
+ for d in gocryptfs-xray contrib/statfs contrib/findholes contrib/atomicrename ; do
+-	(cd "$d"; go build "-ldflags=$GO_LDFLAGS" "$@")
++	(cd "$d"; go build -a -tags netgo -ldflags "-w $GO_LDFLAGS -extldflags "-static"" "$@")
+ done
+ 
+ ./gocryptfs -version

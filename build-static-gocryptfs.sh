@@ -21,7 +21,13 @@ cd $WORKSPACE
 git clone https://github.com/rfjakob/gocryptfs.git
 cd gocryptfs
 cat /go/gocryptfs.static.patch | patch -p0
-CGO_ENABLED=1 bash ./build.bash
+if [ "$(uname -m)" == "x86_64" ]; then
+GOAMD64=v3 GOOS=$(uname -o | sed -e s@^.*/@@ | tr '[:upper:]' '[:lower:]') GOARCH=amd64 CGO_ENABLED=1 bash ./build.bash
+elif [ "$(uname -m)" == "arm64" ]; then
+GOARM64=v8.0,lse GOOS=$(uname -o | sed -e s@^.*/@@ | tr '[:upper:]' '[:lower:]') GOARCH=arm64 CGO_ENABLED=1 bash ./build.bash
+else
+exit 1
+fi
 
 cd $WORKSPACE/gocryptfs
 tar vcJf ./gocryptfs.tar.xz gocryptfs

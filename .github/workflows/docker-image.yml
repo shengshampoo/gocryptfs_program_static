@@ -17,7 +17,7 @@ jobs:
     - name: Build the Docker image
       run: docker build --tag buildergo .
 
-    - name: build static program with alpine linux docker 
+    - name: build static program with alpine linux docker with golang 
       run: |
         docker run --cidfile=buildergo.cid buildergo true
         docker cp "$(cat buildergo.cid):work/artifact/." .

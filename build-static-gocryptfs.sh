@@ -23,7 +23,7 @@ cd gocryptfs
 cat /go/gocryptfs.static.patch | patch -p0
 if [ "$(uname -m)" == "x86_64" ]; then
 GOAMD64=v3 GOOS=$(uname -o | sed -e s@^.*/@@ | tr '[:upper:]' '[:lower:]') GOARCH=amd64 CGO_ENABLED=1 bash ./build.bash
-elif [ "$(uname -m)" == "arm64" ]; then
+elif [ "$(uname -m)" == "aarch64" ]; then
 GOARM64=v8.0,lse GOOS=$(uname -o | sed -e s@^.*/@@ | tr '[:upper:]' '[:lower:]') GOARCH=arm64 CGO_ENABLED=1 bash ./build.bash
 else
 exit 1

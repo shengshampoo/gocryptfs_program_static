@@ -20,7 +20,7 @@ make install
 cd $WORKSPACE
 git clone https://github.com/rfjakob/gocryptfs.git
 cd gocryptfs
-cat /gocryptfs.static.patch | patch -p0
+cat /go/gocryptfs.static.patch | patch -p0
 GOAMD64=v3 GOOS=linux GOARCH=amd64 CGO_ENABLED=1 bash ./build.bash
 
 cd $WORKSPACE/gocryptfs

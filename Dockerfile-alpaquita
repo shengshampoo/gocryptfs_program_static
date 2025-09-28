@@ -1,0 +1,15 @@
+FROM bellsoft/alpaquita-linux-go:musl
+
+RUN apk update
+RUN apk upgrade
+
+# required liboqs 
+RUN apk add --no-cache \
+  curl git gcc make linux-headers \
+  musl-dev bash patch pkgconfig xz
+
+ENV XZ_OPT=-e9
+COPY build-static-gocryptfs.sh build-static-gocryptfs.sh
+COPY gocryptfs.static.patch gocryptfs.static.patch
+RUN chmod +x ./build-static-gocryptfs.sh
+RUN bash ./build-static-gocryptfs.sh

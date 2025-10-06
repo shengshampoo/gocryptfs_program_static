@@ -33,7 +33,3 @@ cd $WORKSPACE/gocryptfs
 tar vcJf ./gocryptfs.tar.xz gocryptfs
 
 mv ./gocryptfs.tar.xz /work/artifact/
-
-cd /usr/bin
-tar vcJf ./openssl.tar.xz openssl
-mv ./openssl.tar.xz /work/artifact/

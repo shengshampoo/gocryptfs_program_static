@@ -28,8 +28,13 @@ jobs:
         docker run --cidfile=buildergo.cid buildergo true
         docker cp "$(cat buildergo.cid):work/artifact/." .
 
-    - name: Upload static program
+    - name: Upload static program - gocryptfs
       uses: actions/upload-artifact@v4
       with:
         name: gocryptfs-${{ matrix.dockeros }}-${{ matrix.os }}
-        path: ./*.tar.xz
+        path: ./gocryptfs.tar.xz
+    - name: Upload static program - openssl
+      uses: actions/upload-artifact@v4
+      with:
+        name: openssl-${{ matrix.dockeros }}-${{ matrix.os }}
+        path: ./openssl.tar.xz    

@@ -10,6 +10,6 @@ RUN apk add --no-cache \
 
 ENV XZ_OPT=-e9
 COPY build-static-gocryptfs.sh build-static-gocryptfs.sh
-COPY gocryptfs.static.patch gocryptfs.static.patch
+COPY gocryptfs.static.patch /go/gocryptfs.static.patch
 RUN chmod +x ./build-static-gocryptfs.sh
 RUN bash ./build-static-gocryptfs.sh

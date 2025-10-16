@@ -9,7 +9,7 @@ mkdir -p /work/artifact
 
 # libressl
 cd $WORKSPACE
-aa=4.1.1
+aa=4.2.0
 curl -sL https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-$aa.tar.gz | tar x --gzip
 cd libressl-$aa
 ./configure --prefix=/usr --disable-tests -disable-shared --enable-static

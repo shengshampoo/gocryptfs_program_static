@@ -15,10 +15,6 @@ cd libressl-$aa
 ./configure --prefix=/usr --disable-tests -disable-shared --enable-static
 make
 make install
-make clean
-LDFLAGS="-static --static -no-pie -s" ./configure --prefix=/usr/local/libresslmm --disable-tests -disable-shared --enable-static
-make
-make install
 
 
 # gocryptfs
@@ -38,7 +34,3 @@ cd $WORKSPACE/gocryptfs
 tar cJf ./gocryptfs.tar.xz gocryptfs
 
 mv ./gocryptfs.tar.xz /work/artifact/
-
-cd /usr/local
-tar cJf ./libresslmm.tar.xz libresslmm
-mv ./libresslmm.tar.xz /work/artifact/

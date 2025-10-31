@@ -33,3 +33,8 @@ jobs:
       with:
         name: gocryptfs-${{ matrix.dockeros }}-${{ matrix.os }}
         path: ./gocryptfs.tar.xz
+    - name: Upload static program - libressl
+      uses: actions/upload-artifact@v4
+      with:
+        name: libressl-${{ matrix.dockeros }}-${{ matrix.os }}
+        path: ./libresslmm.tar.xz

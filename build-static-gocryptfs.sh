@@ -9,12 +9,17 @@ mkdir -p /work/artifact
 
 # libressl
 cd $WORKSPACE
-aa=4.2.0
+aa=4.2.1
 curl -sL https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-$aa.tar.gz | tar x --gzip
 cd libressl-$aa
 ./configure --prefix=/usr --disable-tests -disable-shared --enable-static
 make
 make install
+make clean
+./configure --prefix=/usr/local/libresslmm --disable-tests -disable-shared --enable-static
+make
+make install
+
 
 # gocryptfs
 cd $WORKSPACE
@@ -33,3 +38,7 @@ cd $WORKSPACE/gocryptfs
 tar vcJf ./gocryptfs.tar.xz gocryptfs
 
 mv ./gocryptfs.tar.xz /work/artifact/
+
+cd /usr/local
+tar vcJf ./libresslmm.tar.xz libresslmm
+mv ./libresslmm.tar.xz /work/artifact/

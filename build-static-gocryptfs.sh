@@ -12,7 +12,7 @@ cd $WORKSPACE
 aa=4.2.1
 curl -sL https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-$aa.tar.gz | tar x --gzip
 cd libressl-$aa
-./configure --prefix=/usr --disable-tests -disable-shared --enable-static
+LDFLAGS="-static --static -no-pie -s" ./configure --prefix=/usr --disable-tests -disable-shared --enable-static
 make
 make install
 
@@ -31,6 +31,6 @@ exit 1
 fi
 
 cd $WORKSPACE/gocryptfs
-tar cJf ./gocryptfs.tar.xz gocryptfs
+tar vcJf ./gocryptfs.tar.xz gocryptfs
 
 mv ./gocryptfs.tar.xz /work/artifact/
